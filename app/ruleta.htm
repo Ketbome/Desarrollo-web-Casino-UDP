@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+	<meta charset="utf-8" />
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<link rel="manifest" href="manifest.webmanifest">
+    
+    <title>CASINO UDP</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body role="main" class="bd-bck text-white">
+	  
+		<header class="bg-dark">
+		 
+			<div class="navbar navbar-dark bg-red shadow-sm">
+			  <div class="container d-flex justify-content-between">
+				<ul class="nav nav-pills">
+				  <li class="navbar nav-pills">
+					<a class="navbar-brand" href="home.htm">
+					  <img src="../img/icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+					  Casino UDP
+					</a>
+				  </li >
+				  <li class="navbar dropdown">
+					<a class="navbar-brand d-flex align-items-center dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Juegos</a>
+					<div class="dropdown-menu">
+					  <a class="dropdown-item" href="ruleta.htm">Ruleta</a>
+					  <a class="dropdown-item" href="dados.htm">Dados</a>
+					  <a class="dropdown-item" href="cos.htm">Cara o Sello</a>
+					</div>
+				  </li>
+				</ul>
+
+				  <div class="d-flex"> 
+					<div class="navbar dropdown">
+					<a class="navbar-brand d-flex align-items-center dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+					<div class="dropdown-menu">
+					  <a class="dropdown-item" href="Cargar.htm">Recargar Coins</a>
+					  <a class="dropdown-item" href="historial.htm">Historial</a>
+					  <a class="dropdown-item" href="out.htm">Cerrar Sesion</a>
+					</div>
+					</div>
+
+				  </button>
+				</div>
+			  </div>
+			</div>
+	  </header>
+<script>
+
+
+</script>
+ 
+
+<html>
+    
+    <body class="bd-bck text-white">
+        <div class="text-center container">
+        <h1>Ruleta!</h1>
+        <h3>Elige un numero entre el 0 al 36, se girará la ruleta y caerá en un número, si le aciertas ganas 6 veces lo que has apostado. Vamos intentalo, Mucho Exito!</h3>
+        </div>
+        <div id="ruleta-img-container" class="card mb-4 shadow-sm center">
+          <img id="ruleta-img" src="../img/ruleta.png" class="rounded mx-auto d-block" alt="..." width="700">
+          <div class="flexwrap arrowed arrow-5"></div>
+        </div>
+            <center><h3>Apuesta:</h3></center>
+            <center><div for="dinero"> <h4>Ingrese Monto de Apuesta: <input name="dinero" id="dinero" type="number" placeholder="Ejemplo: $5000"></h4></div></center>
+            <center><div for="numero"> <h4>Ingrese Número de Ruleta: <input name="numero" id="numero" type="number" placeholder="Numero entre 0-36"></h4></div></center>
+            <center><div><button type="submit" id="button" class="btn btn-outline-warning mb-2" >Apostar</button></div></center>
+
+    </body>
+
+</html>
+
+<script>
+function rotate(numero){
+    grados=[180,315,122,200,140,-5,443,238,385,277,365,403,219,64,296,160,335,102,258,151,306,132,267,14,345,112,190,73,228,248,33,287,170,326,92,209,53]
+    $("#ruleta-img").css({'transform': 'rotate('+parseInt(3420+grados[numero])+'deg)'});
+}
+
+$("#button").click(function() {
+tipo=0;
+localStorage.setItem('dinero', $("#dinero").val());
+localStorage.setItem('numero', $("#numero").val());
+$.post( "https://casinobakan.tk/api/v1.0.php/ruleta", {dinero: localStorage.getItem('dinero'), numero: localStorage.getItem('numero')}).done(function( data ) {
+  console.log(data);
+  random = data.randomNumber;
+  tipo = data.tipo;
+  mensaje = data.message;
+  rotate(random);
+  numero: 0;
+  dinero: 0;
+  if(tipo==0){
+    setTimeout(function(){ 
+      alert("Ingresa bien los datos");
+    },100);
+  }else if(tipo==1){
+    setTimeout(function(){ 
+      alert(mensaje);
+    },4500);
+  }else{
+    setTimeout(function(){ 
+      alert(mensaje);
+    },100);
+  }
+  tipo=0;
+});
+});
+
+</script>
+
+<footer class="my-5 pt-5 text-center text-small text-white">
+		<p class="mb-1">&copy; 2020 Company, Siempre contigo.</p>
+		<ul class="list-inline">
+		  <li class="list-inline-item"><a href="info.php">Informacion php</a></li>
+		  <li class="list-inline-item"><a href="#">Terminos</a></li>
+		  <li class="list-inline-item"><a href="#">Soporte</a></li>
+		</ul>
+	</footer>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+	<meta charset="utf-8" />
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<link rel="manifest" href="manifest.webmanifest">
+    
+    <title>CASINO UDP</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body role="main" class="bd-bck text-white">
+	  
+		<header class="bg-dark">
+		 
+			<div class="navbar navbar-dark bg-red shadow-sm">
+			  <div class="container d-flex justify-content-between">
+				<ul class="nav nav-pills">
+				  <li class="navbar nav-pills">
+					<a class="navbar-brand" href="home.htm">
+					  <img src="../img/icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+					  Casino UDP
+					</a>
+				  </li >
+				  <li class="navbar dropdown">
+					<a class="navbar-brand d-flex align-items-center dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Juegos</a>
+					<div class="dropdown-menu">
+					  <a class="dropdown-item" href="ruleta.htm">Ruleta</a>
+					  <a class="dropdown-item" href="dados.htm">Dados</a>
+					  <a class="dropdown-item" href="cos.htm">Cara o Sello</a>
+					</div>
+				  </li>
+				</ul>
+
+				  <div class="d-flex"> 
+					<div class="navbar dropdown">
+					<a class="navbar-brand d-flex align-items-center dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+					<div class="dropdown-menu">
+					  <a class="dropdown-item" href="Cargar.htm">Recargar Coins</a>
+					  <a class="dropdown-item" href="historial.htm">Historial</a>
+					  <a class="dropdown-item" href="out.htm">Cerrar Sesion</a>
+					</div>
+					</div>
+
+				  </button>
+				</div>
+			  </div>
+			</div>
+	  </header>
+
+<body class="bd-bck text-white">
+    <br>
+    <br>
+    <center><h1>Recargar</h1></center>
+    <br>
+    <br>
+
+    <center><form>
+        <h3><input type="number" id="dinero" name="dinero" placeholder="Cuanto cargaras?"></h3>
+        <button id="button">Recargar</button>
+    </form></center>
+    <center><h3><div> Recarga entre el 1-100000 </div></h3></center>
+</body>
+
+<script>
+$("#button").click(function() {
+
+	localStorage.setItem('dinero', $("#dinero").val());
+	$.post( "https://casinobakan.tk/api/v1.0.php/recargar", {recarga: localStorage.getItem('dinero')}).done(function( data ) {
+		console.log(data);
+		recarga: 0;
+		alert("Recarga exitosa");
+	});
+});
+</script>
+
+<footer class="my-5 pt-5 text-center text-small text-white">
+    <p class="mb-1">&copy; 2020 Company, Siempre contigo.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="info.php">Informacion php</a></li>
+      <li class="list-inline-item"><a href="#">Terminos</a></li>
+      <li class="list-inline-item"><a href="#">Soporte</a></li>
+    </ul>
+</footer>

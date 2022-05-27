@@ -1,0 +1,18 @@
+{
+  "short_name": "Super Casino",
+  "name": "My Super Casino long",
+  "description": "Un casino de la UDP",
+  "icons": [
+    {
+      "src": "/app/img/icon.png",
+      "type": "image/png",
+      "sizes": "300x300"
+    }
+  ],
+  "start_url": "/app/index.htm",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/app/",
+  "theme_color": "#3367D6"
+
+}
